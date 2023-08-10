@@ -1,0 +1,30 @@
+<div class="container" style="padding-top: 20px; max-width: 75%;">
+
+  <div class="card border-primary mb-3">
+    <div class="card-header">Ingrese fecha de inicio y final</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="col-form-label mt-4" for="inputDefault">Fecha inicial</label>
+        <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="inputDefault"
+          [(ngModel)]="this.initialDate">
+      </div>
+
+      <div class="form-group">
+        <label class="col-form-label mt-4" for="inputDefault">Fecha final</label>
+        <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="inputDefault" [(ngModel)]="this.finalDate">
+      </div>
+
+      <div class="d-grid gap-2" style="padding-top: 25px;">
+        <button class="btn btn-lg btn-primary" type="button" (click)="average()">Consultar</button>
+      </div>
+
+      <div class="list-group" *ngIf="compraAverage>0 && ventaAverage>0">
+        <a class="list-group-item list-group-item-action">Promedio Compra: {{compraAverage}} </a>
+        <a class="list-group-item list-group-item-action">Promedio Venta:  {{ventaAverage}} </a>
+      </div>
+
+    </div>
+  </div>
+
+  <app-table *ngIf="show"></app-table>
+</div>

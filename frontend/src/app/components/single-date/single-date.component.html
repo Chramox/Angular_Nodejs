@@ -1,0 +1,59 @@
+<div class="container" style="padding-top: 20px; max-width: 75%;">
+
+    <div class="card border-primary mb-3">
+        <div class="card-header">Ingrese fecha de inicio</div>
+        <div class="card-body">
+            <div class="form-group">
+                <label class="col-form-label mt-4" for="inputDefault">Fecha inicial</label>
+                <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="inputDefault"
+                    [(ngModel)]="this.initialDate">
+            </div>
+
+            <div class="d-grid gap-2" style="padding-top: 25px;">
+                <button class="btn btn-lg btn-primary" type="button" (click)="singleDate()">Consultar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container" *ngIf="show">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Moneda ID</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">TC Venta</th>
+                    <th scope="col">TC Compra</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of table">
+                    <th scope="row">{{item.moneda}}</th>
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.venta}}</td>
+                    <td>{{item.compra}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" [ngClass]="{'disabled': currentPage === 1 }"
+                        (click)="changePage(currentPage-1)">&laquo;</a>
+                </li>
+                <li class="page-item" *ngFor="let page of totalPages">
+                    <a class="page-link" [ngClass]="{'active': page === currentPage }"
+                        (click)="changePage(page)">{{page}}</a>
+                </li>
+                <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages.length }">
+                    <a class="page-link" (click)="changePage(currentPage+1)">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</div>

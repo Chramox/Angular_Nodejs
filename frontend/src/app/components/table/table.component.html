@@ -1,0 +1,44 @@
+<div>
+    <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">No. Petición</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">TC Venta</th>
+            <th scope="col">TC Compra</th>
+          </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let data of table">
+                <tr>
+                    <td [attr.rowspan]="data.rowspan">{{data.idRequest}}</td>
+                    <td>{{data.values[0].date}}</td>
+                    <td>{{data.values[0].sellAmount}}</td>
+                    <td>{{data.values[0].buyAmount}}</td>
+                </tr>
+                <ng-container *ngFor="let item of data.values; let i= index;">
+                    <tr *ngIf="i!=0">
+                        <td>{{item.date}}</td>
+                        <td>{{item.sellAmount}}</td>
+                        <td>{{item.buyAmount}}</td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+      </table>
+</div>
+
+<div>
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" [ngClass]="{'disabled': currentPage === 1 }"
+        (click)="changePage(currentPage-1)">&laquo;</a>
+      </li>
+      <li class="page-item" *ngFor="let page of totalPages">
+        <a class="page-link" [ngClass]="{'active': page === currentPage }" (click)="changePage(page)" >{{page}}</a>
+      </li>
+      <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages.length }">
+        <a class="page-link" (click)="changePage(currentPage+1)">&raquo;</a>
+      </li>
+    </ul>
+  </div>
